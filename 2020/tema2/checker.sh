@@ -3,12 +3,18 @@
 FOLDERS=../tests/*
 HW_PATH=com/apd/tema2/Main
 ROOT=./src
-
+echo "Show CPU information (lscpu)"
+echo ""
 lscpu
+
+echo "Show available memory (free -m)"
 free -m
+echo ""
 
 unzip artifact.zip
 unzip archive.zip
+
+source /etc/profile.d/jdk14.0.2.sh
 
 if [ -d "$ROOT" ]; then
 	rm -rf out err src/bin
