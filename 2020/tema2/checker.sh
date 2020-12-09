@@ -1,5 +1,7 @@
 #!/bin/bash
 
+date
+
 FOLDERS=../tests/*
 HW_PATH=com/apd/tema2/Main
 ROOT=./src
@@ -8,8 +10,8 @@ echo ""
 lscpu
 
 echo "Show available memory (free -m)"
-free -m
 echo ""
+free -m
 
 unzip artifact.zip
 unzip archive.zip
@@ -43,3 +45,4 @@ if [ -d "$ROOT" ]; then
 else
 	echo "src not found"
 fi
+date
