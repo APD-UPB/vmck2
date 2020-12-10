@@ -1,22 +1,15 @@
 #!/bin/bash
 
-date
-
 FOLDERS=../tests/*
 HW_PATH=com/apd/tema2/Main
 ROOT=./src
-echo "Show CPU information (lscpu)"
-echo ""
-lscpu
+ERR=./err
 
-echo "Show available memory (free -m)"
-echo ""
+lscpu
 free -m
 
 unzip artifact.zip
 unzip archive.zip
-
-source /etc/profile.d/jdk14.0.2.sh
 
 if [ -d "$ROOT" ]; then
 	rm -rf out err src/bin
@@ -35,14 +28,26 @@ if [ -d "$ROOT" ]; then
 			filename="${fullpath##*/}"
 
 			timeout 120 java -cp bin/ $HW_PATH $f > ../out/$filename.out
-
+			
+			if [ $? != 0 ]
+			then
+				echo "Timer exceeded"
+			fi
 		done
 	done
 
 	cd ..
 	timeout 120 java -jar ./Tema2Checker_J8.jar
 
+	for f in $ERR/*
+        do
+               	if [[ -s $f ]]
+		then
+			echo "Contents of the file $f"
+			cat $f
+		fi
+	done
+
 else
 	echo "src not found"
 fi
-date
