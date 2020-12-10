@@ -62,7 +62,7 @@ if [ -d "$ROOT" ]; then
                         filename="${fullpath##*/}"
 
                         echo "Contents of the out file $filename.out"
-                        cat $OUT/$filename.out
+                        head --lines=10 $OUT/$filename.out
 		fi
 	done
 
