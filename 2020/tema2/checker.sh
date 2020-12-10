@@ -66,6 +66,21 @@ if [ -d "$ROOT" ]; then
                         head --lines=10 $OUT/$filename.out
 		fi
 	done
+	
+	echo "complex_1"
+	cat "out/complex_maintenance_1.out"
+	echo -e "\n\n"
+	
+	echo "complex_2"
+	cat "out/complex_maintenance_2.out"
+	echo -e "\n\n"
+	
+	echo "complex_3"
+	cat "out/complex_maintenance_3.out"
+	echo -e "\n\n"
+	
+	echo "complex_4"
+	cat "out/complex_maintenance_4.out"
 
 else
 	echo "src not found"
