@@ -6,6 +6,7 @@ FOLDERS=../tests/*
 HW_PATH=com/apd/tema2/Main
 ROOT=./src
 ERR=./err
+OUT=./out
 
 echo -e "Show CPU info (lscpu)\n\n"
 lscpu
@@ -54,8 +55,14 @@ if [ -d "$ROOT" ]; then
         do
                	if [[ -s $f ]]
 		then
-			echo "Contents of the file $f"
-			cat $f
+			echo "Contents of the err file $f"
+                        cat $f
+
+                        fullpath=`echo "${f%.*}"`
+                        filename="${fullpath##*/}"
+
+                        echo "Contents of the out file $filename.out"
+                        cat $OUT/$filename.out
 		fi
 	done
 
