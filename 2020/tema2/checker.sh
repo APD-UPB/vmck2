@@ -1,6 +1,6 @@
 #!/bin/bash
 
-date
+echo "Start time: $(date)"
 
 FOLDERS=../tests/*
 HW_PATH=com/apd/tema2/Main
@@ -63,4 +63,4 @@ else
 	echo "src not found"
 fi
 
-date
+echo "End time: $(date)"
