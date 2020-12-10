@@ -1,6 +1,7 @@
 #!/bin/bash
 
 echo "Start time: $(date)"
+echo "V1.3"
 
 FOLDERS=../tests/*
 HW_PATH=com/apd/tema2/Main
