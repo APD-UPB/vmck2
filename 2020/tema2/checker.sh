@@ -1,15 +1,25 @@
 #!/bin/bash
 
+date
+
 FOLDERS=../tests/*
 HW_PATH=com/apd/tema2/Main
 ROOT=./src
 ERR=./err
 
+echo -e "Show CPU info (lscpu)\n\n"
 lscpu
+
+echo -e "\n\nShow memory info (free -m)\n\n"
 free -m
+echo -e "\n\n"
+
+echo -e "Unzip tests and student solution\n\n"
 
 unzip artifact.zip
 unzip archive.zip
+
+echo -e "\n\nRunning the checker\n\n"
 
 if [ -d "$ROOT" ]; then
 	rm -rf out err src/bin
@@ -51,3 +61,5 @@ if [ -d "$ROOT" ]; then
 else
 	echo "src not found"
 fi
+
+date
