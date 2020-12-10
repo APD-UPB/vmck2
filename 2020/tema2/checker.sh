@@ -19,6 +19,7 @@ echo -e "Unzip tests and student solution\n\n"
 unzip artifact.zip
 unzip archive.zip
 
+source /etc/profile.d/jdk14.0.2.sh
 echo -e "\n\nRunning the checker\n\n"
 
 if [ -d "$ROOT" ]; then
