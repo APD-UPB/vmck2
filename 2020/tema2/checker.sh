@@ -57,7 +57,7 @@ if [ -d "$ROOT" ]; then
                	if [[ -s $f ]]
 		then
 			echo "Contents of the err file $f"
-                        cat $f
+                        head --lines=10 $f
 
                         fullpath=`echo "${f%.*}"`
                         filename="${fullpath##*/}"
@@ -67,20 +67,20 @@ if [ -d "$ROOT" ]; then
 		fi
 	done
 	
-	echo "complex_1"
-	cat "out/complex_maintenance_1.out"
-	echo -e "\n\n"
+	#echo "complex_1"
+	#cat "out/complex_maintenance_1.out"
+	#echo -e "\n\n"
 	
-	echo "complex_2"
-	cat "out/complex_maintenance_2.out"
-	echo -e "\n\n"
+	#echo "complex_2"
+	#cat "out/complex_maintenance_2.out"
+	#echo -e "\n\n"
 	
-	echo "complex_3"
-	cat "out/complex_maintenance_3.out"
-	echo -e "\n\n"
+	#echo "complex_3"
+	#cat "out/complex_maintenance_3.out"
+	#echo -e "\n\n"
 	
-	echo "complex_4"
-	cat "out/complex_maintenance_4.out"
+	#echo "complex_4"
+	#cat "out/complex_maintenance_4.out"
 
 else
 	echo "src not found"
