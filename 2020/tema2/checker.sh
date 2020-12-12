@@ -1,7 +1,7 @@
 #!/bin/bash
 
 echo "Start time: $(date)"
-echo "V1.3"
+echo "V1.5"
 
 FOLDERS=../tests/*
 HW_PATH=com/apd/tema2/Main
@@ -40,7 +40,15 @@ if [ -d "$ROOT" ]; then
 			fullpath=`echo "${f%.*}"`
 			filename="${fullpath##*/}"
 
-			timeout 120 java -cp bin/ $HW_PATH $f > ../out/$filename.out
+			timeout 180 java -cp bin/ $HW_PATH $f > ../out/$filename.out
+			
+			x=0
+
+                        while [ $x -le 2 ] && [[ $filename =~ ^complex_maintenance_[0-9]$ ]] && [ ! -s ../out/$filename.out ]
+                        do
+                                timeout 180 java -cp bin/ $HW_PATH $f > ../out/$filename.out
+                                x=$(( $x + 1))
+                        done
 			
 			if [ $? != 0 ]
 			then
@@ -50,37 +58,22 @@ if [ -d "$ROOT" ]; then
 	done
 
 	cd ..
-	timeout 120 java -jar ./Tema2Checker_J8.jar
+	timeout 180 java -jar ./Tema2Checker_J8.jar
 
 	for f in $ERR/*
         do
                	if [[ -s $f ]]
 		then
 			echo "Contents of the err file $f"
-                        head --lines=10 $f
+                        head --lines=20 $f
 
                         fullpath=`echo "${f%.*}"`
                         filename="${fullpath##*/}"
 
                         echo "Contents of the out file $filename.out"
-                        head --lines=10 $OUT/$filename.out
+                        head --lines=150 $OUT/$filename.out
 		fi
 	done
-	
-	#echo "complex_1"
-	#cat "out/complex_maintenance_1.out"
-	#echo -e "\n\n"
-	
-	#echo "complex_2"
-	#cat "out/complex_maintenance_2.out"
-	#echo -e "\n\n"
-	
-	#echo "complex_3"
-	#cat "out/complex_maintenance_3.out"
-	#echo -e "\n\n"
-	
-	#echo "complex_4"
-	#cat "out/complex_maintenance_4.out"
 
 else
 	echo "src not found"
