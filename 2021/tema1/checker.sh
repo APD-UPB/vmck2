@@ -93,6 +93,10 @@ function run_par_and_measure {
 	rm -rf time.txt
 }
 
+# printeaza informatii despre rulare
+echo "Timp de start: $(date)"
+echo "V1.0"
+
 # dezarhiveaza implementarea secventiala si testele de input
 mkdir skel
 unzip artifact.zip -d skel
@@ -199,9 +203,9 @@ done
 echo "Teste corecte: $correct/$total"
 
 # se calculeaza acceleratia (este folosit primul test)
-speedup12=$(echo "${seq_times[0]}/${par_times[0]}" | bc -l)
-speedup14=$(echo "${seq_times[0]}/${par_times[1]}" | bc -l)
-speedup24=$(echo "${par_times[0]}/${par_times[1]}" | bc -l)
+speedup12=$(awk "BEGIN {printf \"%.2f\",${seq_times[0]}/${par_times[0]}}")
+speedup14=$(awk "BEGIN {printf \"%.2f\",${seq_times[0]}/${par_times[1]}}")
+speedup24=$(awk "BEGIN {printf \"%.2f\",${par_times[0]}/${par_times[1]}}")
 
 # acceleratia se considera 0 daca testele de scalabilitate nu sunt corecte
 if [ $correct_scalability != 2 ]
@@ -217,8 +221,20 @@ printf "Acceleratie 1-4: %0.2f\n" $speedup14
 printf "Acceleratie 2-4: %0.2f\n" $speedup24
 
 # se verifica acceleratia de la secvential la 2 thread-uri
-max=$(echo "${speedup12} > 1.3" | bc -l)
-part=$(echo "${speedup12} > 1.1" | bc -l)
+if awk "BEGIN {exit !(${speedup12} > 1.3)}"
+then
+    max=1
+else
+    max=0
+fi
+
+if awk "BEGIN {exit !(${speedup12} > 1.1)}"
+then
+    part=1
+else
+    part=0
+fi
+
 if [ $max == 1 ]
 then
 	scalability=$((scalability+20))
@@ -231,8 +247,20 @@ else
 fi
 
 # se verifica acceleratia de la secvential la 4 thread-uri
-max=$(echo "${speedup14} > 1.8" | bc -l)
-part=$(echo "${speedup14} > 1.5" | bc -l)
+if awk "BEGIN {exit !(${speedup14} > 1.8)}"
+then
+    max=1
+else
+    max=0
+fi
+
+if awk "BEGIN {exit !(${speedup14} > 1.5)}"
+then
+    part=1
+else
+    part=0
+fi
+
 if [ $max == 1 ]
 then
 	scalability=$((scalability+20))
@@ -245,7 +273,13 @@ else
 fi
 
 # se verifica acceleratia de la 2 la 4 thread-uri
-max=$(echo "${speedup24} > 1.1" | bc -l)
+if awk "BEGIN {exit !(${speedup24} > 1.1)}"
+then
+    max=1
+else
+    max=0
+fi
+
 if [ $max == 1 ]
 then
 	scalability=$((scalability+10))
