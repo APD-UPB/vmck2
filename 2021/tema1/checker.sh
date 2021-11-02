@@ -15,7 +15,7 @@ function show_score {
 	echo ""
 	echo "Scor scalabilitate: $scalability/50"
 	echo "Scor corectitudine: $correctness/30"
-	echo "Total: $((correctness + scalability))/80"
+	echo "TOTAL: $((correctness + scalability))/80"
 }
 
 # se compara doua fisiere (parametri: fisier1 fisier2 test_scalabitate)
