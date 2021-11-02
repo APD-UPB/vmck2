@@ -99,6 +99,11 @@ unzip artifact.zip -d skel
 mkdir sol
 unzip archive.zip -d sol
 
+ls
+show_score
+echo "TOTAL: 10/80"
+exit
+
 # script-ul se asteapta sa existe un folder "skel" cu scheletul nemodificat
 # si un folder "sol" cu implementarea paralela
 
