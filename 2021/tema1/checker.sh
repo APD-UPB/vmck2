@@ -224,6 +224,9 @@ then
 	echo "Testele de scalabilitate nu sunt corecte, acceleratia se considera 0"
 fi
 
+printf "Durata executie secventiala: %0.2f\n" ${seq_times[0]}
+printf "Durata executie paralela, P=2: %0.2f\n" ${par_times[0]}
+printf "Durata executie paralela, P=4: %0.2f\n" ${par_times[1]}
 printf "Acceleratie 1-2: %0.2f\n" $speedup12
 printf "Acceleratie 1-4: %0.2f\n" $speedup14
 printf "Acceleratie 2-4: %0.2f\n" $speedup24
