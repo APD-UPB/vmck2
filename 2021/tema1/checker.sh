@@ -122,8 +122,8 @@ fi
 
 # se compileaza cele doua implementari (cea paralela si cea secventiala)
 cd skel
-make clean &> /dev/null
-make build &> /dev/null
+make clean
+make build
 
 if [ ! -f tema1 ]
 then
@@ -135,8 +135,16 @@ fi
 cd ..
 
 cd sol
-make clean &> /dev/null
-make build &> /dev/null
+
+if [ -f tema1_par ]
+then
+    echo "E: Binar inclus in arhiva"
+    show_score
+    exit
+fi
+
+make clean
+make build
 
 if [ ! -f tema1_par ]
 then
