@@ -63,7 +63,7 @@ echo "Timp de start: $(date)"
 echo "V1.0"
 
 rm -rf $folder
-rm -rf $tests
+rm -rf tests
 mkdir $folder
 unzip -o archive.zip -d $folder
 unzip -o artifact.zip
