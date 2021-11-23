@@ -80,6 +80,8 @@ cp -R tests $folder/
 cd $folder
 rm -rf *.class
 
+source /etc/profile.d/jdk14.0.2.sh
+
 javac *.java
 
 if [ ! -f Tema2.class ]
