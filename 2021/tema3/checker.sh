@@ -253,3 +253,4 @@ make clean
 cd ..
 
 show_score
+kill $$
