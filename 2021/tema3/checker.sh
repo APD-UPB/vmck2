@@ -6,6 +6,7 @@ topo_tests=0
 comp_tests=0
 invalid_comm=0
 bonus=0
+finished=0
 
 # afiseaza scorul final
 function show_score {
@@ -173,13 +174,18 @@ function check_bonus {
 # seteaza un timeout de 10 minute pentru toata rularea
 {
 	sleep 600
-	pkill -9 -f tema3
+	pkill -9 -f tema3 &> /dev/null
+	pkill -9 -f sleep &> /dev/null
 
-	echo "E: Scriptul a durat prea mult"
-	show_score
-
-	kill $$
+	if [ $finished == 0 ]
+	then
+		echo "E: Scriptul a durat prea mult"
+		show_score
+		kill $$
+	fi
 } &
+
+pid=$?
 
 # printeaza informatii despre rulare
 echo "Timp de start: $(date)"
@@ -252,5 +258,8 @@ make clean
 
 cd ..
 
+finished=1
+
 show_score
-kill $$ &> /dev/null
+
+kill -9 $pid &> /dev/null
