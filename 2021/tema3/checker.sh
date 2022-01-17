@@ -202,6 +202,7 @@ then
     echo "E: Nu exista directorul cu sursele"
     finished=1
     show_score
+    kill -9 $pid &> /dev/null
     exit
 fi
 
@@ -217,6 +218,7 @@ then
     echo "E: Nu s-a putut compila tema"
     finished=1
     show_score
+    kill -9 $pid &> /dev/null
     exit
 fi
 
