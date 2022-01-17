@@ -253,4 +253,4 @@ make clean
 cd ..
 
 show_score
-kill $$
+kill $$ &> /dev/null
