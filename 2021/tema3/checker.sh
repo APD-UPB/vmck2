@@ -200,6 +200,7 @@ unzip -o artifact.zip
 if [ ! -d $folder ]
 then
     echo "E: Nu exista directorul cu sursele"
+    finished=1
     show_score
     exit
 fi
@@ -214,6 +215,7 @@ make build
 if [ ! -f tema3 ]
 then
     echo "E: Nu s-a putut compila tema"
+    finished=1
     show_score
     exit
 fi
