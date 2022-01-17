@@ -170,6 +170,17 @@ function check_bonus {
 	bonus=20
 }
 
+# seteaza un timeout de 10 minute pentru toata rularea
+{
+	sleep 600
+	pkill -9 -f tema3
+
+	echo "E: Scriptul a durat prea mult"
+	show_score
+
+	kill $$
+} &
+
 # printeaza informatii despre rulare
 echo "Timp de start: $(date)"
 echo "V1.0"
@@ -236,6 +247,8 @@ echo "Se ruleaza testul de bonus..."
 cp ../tests/testbonus/*.txt .
 check_bonus
 rm -rf *.txt
+
+make clean
 
 cd ..
 
